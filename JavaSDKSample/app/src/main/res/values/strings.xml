@@ -1,0 +1,52 @@
+<resources>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+
+    <string name="app_name">TranslationSDK</string>
+    <string name="title_activity_main">MainActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="changeYourAction">Replace with your own action</string>
+    <string name="change_language">Change Language</string>
+    <string name="change_app_language">Change App Language</string>
+    <string name="change">Change Now</string>
+    <string name="best_crickets"><u>Go to next screen to check best cricketers in world</u></string>
+    <string name="best_crickets1"><u>Go to next screen to check current ICC odi womens rankings</u></string>
+
+
+    <string-array name="best_cricket_eleven">
+        <item>Babar Azam</item>
+        <item>David Warner</item>
+        <item>Virat Kohli</item>
+        <item>Brendan Mccullum</item>
+        <item>AB de Villiars</item>
+        <item>Andre Russell</item>
+        <item>Rashid Khan</item>
+        <item>Dale Steyn</item>
+        <item>Sandeep Lamichanne</item>
+        <item>Lasith Malinga</item>
+        <item>MS Dhoni</item>
+    </string-array>
+
+    <string-array name="best_cricket_eleven_women">
+        <item>Alyssa Healy</item>
+        <item>Natalie Sciver</item>
+        <item>Beth Mooney</item>
+        <item>Laura Wolvaardt</item>
+        <item>Meg Lanning</item>
+        <item>Rachael Haynes</item>
+        <item>Mithali Raj</item>
+        <item>Amy Satterthwaite</item>
+        <item>Smriti Mandhana</item>
+        <item>Tammy Beaumont</item>
+        <item>Jhulan Goswami</item>
+        <item>Ellyse Perry</item>
+    </string-array>
+
+</resources>
