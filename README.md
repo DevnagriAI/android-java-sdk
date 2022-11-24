@@ -135,7 +135,7 @@ You can use these methods anywhere in your project and these will provide transl
           @Override
           public void onCallback(String translation) {
         	   // use translated text here       
-          }
+          }            
     });
  
 
@@ -181,11 +181,11 @@ You can use these methods anywhere in your project and these will provide transl
   	json.put("Language", "Java");
   
   	devNagriTranslationSdk.getTranslationOfJSON(jsonObjectValue, 
-	ignoreKeys,
-	new GenericCallback<JSONObject>() {
-	@Override
-	public void onCallback(JSONObject translatedJsonObject) {
-		//Here you find translated JSON Object
+		ignoreKeys,
+		new GenericCallback<JSONObject>() {
+		@Override
+		public void onCallback(JSONObject translatedJsonObject) {
+			//Here you find translated JSON Object
 		}
 	});
 
