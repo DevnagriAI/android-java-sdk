@@ -97,7 +97,12 @@ In case you don't want to use the system language, you can set a different langu
 
 
     Locale locale = new Locale("hi");
-    BaseApplication.devNagriTranslationSdk.updateAppLocale(this, locale);
+    BaseApplication.devNagriTranslationSdk.updateAppLocale(activity, locale, new ResponseListener() {
+      @Override
+      public void responseCallback(Boolean isCompleted, String error) {
+	//callback received
+      }
+    });
 
 Please note that you will get the english text back if your device language is english or you have not set any specific language for the SDK. To get the translation in Hindi, Please update app locale to Hindi as per above method.
 
