@@ -45,11 +45,11 @@ Initialise the SDK in your application class and add the API_KEY from DevNagri.
     public void onCreate() {
         super.onCreate();
             
-        int sync_Time = 10;  //In minutes
+        int sync_Time = 240;  //In minutes
           
-        List<String> strings = Arrays.stream(R.string.class.getFields()).map(Field::getName).collect(toList());
-        List<String> arrays = Arrays.stream(R.array.class.getFields()).map(Field::getName).collect(toList());
-        List<String> plurals = null;
+        Field[] strings = R.string.class.getFields();
+        Field[] arrays = R.array.class.getFields();
+        Field[] plurals = R.plurals.class.getFields();
 	  
 	      // passing arrays and plurals in init method is optional here, pass them only if defined in strings.xml file
         try {
