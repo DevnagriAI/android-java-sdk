@@ -189,6 +189,10 @@ You can use these methods anywhere in your project and these will provide transl
 		}
 	});
 
-
- 
- 
+# For Modular Approach
+	- Please add DevNagriSDK dependency in each module level gradle file.
+	- If you have multiple modules in your application, then in each module's base activity override the below method.
+	
+	public AppCompatDelegate getDelegate() {
+		return MainApplication.devNagriTranslationSdk.fetchAppDelegate(this, super.getDelegate());
+	}
