@@ -45,7 +45,7 @@ Initialise the SDK in your application class and add the API_KEY from DevNagri.
     public void onCreate() {
         super.onCreate();
             
-        int sync_Time = 240;  //In minutes
+        int sync_Time = 240;  
           
         Field[] strings = R.string.class.getFields();
         Field[] arrays = R.array.class.getFields();
