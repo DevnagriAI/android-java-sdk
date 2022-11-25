@@ -24,7 +24,7 @@ Add the below dependency in your app build.gradle file:
 	
 	    ...
 	    
-	    implementation ('com.github.DevnagriAI:android-java-sdk:1.0.5@aar') { transitive(true) }
+	    implementation ('com.github.DevnagriAI:android-java-sdk:1.0.6@aar') { transitive(true) }
 	    
 	}
         
@@ -94,7 +94,7 @@ And inside code:
 # Change Language
 
 In case you don't want to use the system language, you can set a different language in the updateAppLocale method. The language code (locale) needs to be present in a release from Devnagri.
-
+updateAppLocale may take some time (for example: 3-4 seconds), we suggest you to add a loader before calling updateAppLocale and stop in callback.
 
     Locale locale = new Locale("hi");
     BaseApplication.devNagriTranslationSdk.updateAppLocale(activity, locale, new ResponseListener() {
@@ -135,7 +135,7 @@ You can use these methods anywhere in your project and these will provide transl
           @Override
           public void onCallback(String translation) {
         	   // use translated text here       
-          }            
+          }
     });
  
 
@@ -173,26 +173,21 @@ You can use these methods anywhere in your project and these will provide transl
  
 # Get Translations Of JSON Object
 
-  	// This method is used to convert the entire JSON object to requested language 
-  	// ignoreKeys -> Send a list of strings that you want to ignore during the conversion process 
+  // This method is used to convert the entire JSON object to requested language 
+  // ignoreKeys -> Send a list of strings that you want to ignore during the conversion process 
 
-  	JSONObject json = new JSONObject();
-  	json.put("Name", "DevNagri SDK");
-  	json.put("Language", "Java");
-  
-  	devNagriTranslationSdk.getTranslationOfJSON(jsonObjectValue, 
-		ignoreKeys,
-		new GenericCallback<JSONObject>() {
-		@Override
-		public void onCallback(JSONObject translatedJsonObject) {
-			//Here you find translated JSON Object
-		}
-	});
+  JSONObject json = new JSONObject();
+  json.put("Name", "DevNagri SDK");
+  json.put("Language", "Java");
+  devNagriTranslationSdk.getTranslationOfJSON(jsonObjectValue, 
+            ignoreKeys, 
+            new GenericCallback<JSONObject>() {
+                  @Override
+                  public void onCallback(JSONObject translatedJsonObject) {
+                      //Here you find translated JSON Object
+                  }
+            });
 
-# For Modular Approach
-	- Please add DevNagriSDK dependency in each module level gradle file.
-	- If you have multiple modules in your application, then in each module's base activity override the below method.
-	
-	public AppCompatDelegate getDelegate() {
-		return MainApplication.devNagriTranslationSdk.fetchAppDelegate(this, super.getDelegate());
-	}
+
+ 
+ 
