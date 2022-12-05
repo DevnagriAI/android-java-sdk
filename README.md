@@ -24,7 +24,7 @@ Add the below dependency in your app build.gradle file:
 	
 	    ...
 	    
-	    implementation ('com.github.DevnagriAI:android-java-sdk:1.0.6@aar') { transitive(true) }
+	    implementation ('com.github.DevnagriAI:android-java-sdk:1.0.7@aar') { transitive(true) }
 	    
 	}
         
