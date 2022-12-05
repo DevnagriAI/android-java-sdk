@@ -30,7 +30,7 @@ public class BaseApplication extends Application {
         Field[] arrays = R.array.class.getFields();
         //List<String> collect = Arrays.stream(R.plurals.class.getFields()).map(Field::getName).collect(toList());
 
-        String API_KEY = "devnagri_6503e5c8e30d11ec9f8d021b05a03360";
+        String API_KEY = "Enter Your API KEY Here";
         int sync_Time = 10;
         try {
             Log.d(TAG, "Start init process");
