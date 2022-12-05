@@ -1,21 +1,17 @@
 package com.test;
 
 import android.os.Bundle;
-
 import com.google.android.material.snackbar.Snackbar;
+import com.translationsdk.R;
+import com.translationsdk.databinding.ActivityMainBinding;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
-
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import com.test.databinding.ActivityMainBinding;
-
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -52,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -64,10 +60,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             return true;
-        }
-
+        }*/
         return super.onOptionsItemSelected(item);
     }
 

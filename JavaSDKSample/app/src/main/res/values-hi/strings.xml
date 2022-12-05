@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TranslationSDK_Hindi</string> <string name="title_activity_main">MainActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next_Hindi</string>
+    <string name="previous">Previous_Hindi</string>
+
+    <string name="changeYourAction">Replace with your own action_Hindi</string>
+
+
+
+</resources>

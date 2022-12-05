@@ -1,4 +1,4 @@
-package com.test;
+package com.translationsdk;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,12 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.NavController;
+
+import com.devnagritranslationsdk.interfaces.ResponseListener;
 import com.devnagritranslationsdk.network.ResultInterface;
-import com.translationsdk.R;
 import com.translationsdk.databinding.FragmentFirstBinding;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,38 +27,40 @@ import java.util.Locale;
 
 public class FirstFragment extends Fragment {
 
-    private FragmentFirstBinding binding;
+    String TAG = "FirstFragment";
+    private FragmentFirstBinding binding = null;
+    static int userSelectedIndex = 0;
     Activity activity;
     Locale locale = null;
     HashMap<String,String> supportableLanguages;
-    static int userSelectedIndex = 0;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
 
         activity = (MainActivity) getActivity();
     }
+
+    @Nullable
     @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
-
-        binding = FragmentFirstBinding.inflate(inflater, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_first, container, false);
         return binding.getRoot();
-
     }
 
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        NavController navController = new NavController(getContext());
 
         binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                ((MainActivity) activity).navController.navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
+
         binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -88,29 +93,36 @@ public class FirstFragment extends Fragment {
                                                 @Override
                                                 public void onClick(DialogInterface dialogInterface, int i) {
                                                     dialogInterface.dismiss();
-                                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-                                                        BaseApplication.devNagriTranslationSdk.updateAppLocale(activity, locale, (isCompleted, error) -> {
-
+                                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                                        Log.d("updateAppLocale_TAG", "updating app locale starting for language: " + locale.getLanguage());
+                                                        BaseApplication.devNagriTranslationSdk.updateAppLocale(activity, locale, new ResponseListener() {
+                                                            @Override
+                                                            public void responseCallback(Boolean isCompleted, String error) {
+                                                                Log.d("updateAppLocale_TAG", "updating app locale completed for language: " + locale.getLanguage() + " isCompleted = " + isCompleted + " error: [" + error + "]");
+                                                            }
                                                         });
+                                                    }
                                                     else
-                                                        Log.d("sohan", "binding.buttonSecond click: build v is greater than Build.VERSION_CODES.N");
+                                                        Log.d("updateAppLocale_TAG", "binding.buttonSecond click: build v is greater than Build.VERSION_CODES.N");
                                                 }
                                             }).setSingleChoiceItems(language, userSelectedIndex, new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialogInterface, int i) {
-                                                    userSelectedIndex = i;
-                                                    locale = new Locale(supportableLanguages.get(listOfKeys.get(userSelectedIndex)));
-                                                }
-                                            }).setCancelable(true).show();
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            userSelectedIndex = i;
+                                            locale = new Locale(supportableLanguages.get(listOfKeys.get(userSelectedIndex)));
+                                        }
+                                    }).setCancelable(true).show();
                                 }
                             });
                         }
                     });
                 }catch (Exception ex){
-                    Log.d("sohan", "onClick exception: "+ex);
+                    Log.d(TAG, "onClick exception: "+ex);
                 }
             }
         });
+
+        printattr();
     }
 
     @Override
@@ -119,4 +131,30 @@ public class FirstFragment extends Fragment {
         binding = null;
     }
 
+    void printattr(){
+
+    }
+
+    //Here is sample code for - getTranslationOfString() working
+                            /*Log.d(TAG, "DevNagri - Need Translation of member");
+                            BaseApplication.devNagriTranslationSdk.getTranslationOfString("Member", new StringCallback() {
+        @Override
+        public void onCallback(String translation) {
+            Log.d(TAG, "DevNagri - Translated String: "+translation);
+        }
+    });
+
+    // test again
+    ArrayList<String> aa = new ArrayList<>();
+                            aa.add("Family");
+                            aa.add("Member");
+                            BaseApplication.devNagriTranslationSdk.getTranslationOfStrings(aa, new GenericCallback<List<String>>() {
+        @Override
+        public void onCallback(List<String> value) {
+            Log.d(TAG, "getTranslationOfStrings onCallback: "+value.get(0));
+            Log.d(TAG, "getTranslationOfStrings onCallback: "+value.get(1));
+        }
+    });
+
+                            BaseApplication.devNagriTranslationSdk.updateTranslations();*/
 }

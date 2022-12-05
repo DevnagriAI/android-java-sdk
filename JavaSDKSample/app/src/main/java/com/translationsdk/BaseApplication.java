@@ -1,26 +1,17 @@
-package com.test;
+package com.translationsdk;
 
 import android.app.Application;
 import android.os.Build;
 import android.util.Log;
-
+import androidx.annotation.RequiresApi;
 import com.devnagritranslationsdk.DevNagriTranslationSdk;
 import com.devnagritranslationsdk.interfaces.ResponseListener;
-import com.translationsdk.R;
-
 import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
-
-import androidx.annotation.RequiresApi;
 
 public class BaseApplication extends Application {
 
     static String TAG = "baseApplicationTAG";
-    static DevNagriTranslationSdk devNagriTranslationSdk;
-
+    public static DevNagriTranslationSdk devNagriTranslationSdk;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onCreate() {
@@ -28,20 +19,19 @@ public class BaseApplication extends Application {
 
         Field[] strings = R.string.class.getFields();
         Field[] arrays = R.array.class.getFields();
-        //List<String> collect = Arrays.stream(R.plurals.class.getFields()).map(Field::getName).collect(toList());
+        /*Field[] plurals = R.plurals.class.getFields();*/
 
-        String API_KEY = "devnagri_6503e5c8e30d11ec9f8d021b05a03360";
-        int sync_Time = 10;
+        int sync_Time = 50;
         try {
-            Log.d(TAG, "Start init process");
             devNagriTranslationSdk = new DevNagriTranslationSdk();
-            devNagriTranslationSdk.init(getApplicationContext(), API_KEY, sync_Time, strings, arrays, null, new ResponseListener() {
+            Log.d("BaseApplication_TAG", "DevNagri Sdk initializing");
+            devNagriTranslationSdk.init(getApplicationContext(), "devnagri_14f278ae6bc711eda08202bf838402f8", sync_Time, strings, arrays, null, new ResponseListener() {
                 @Override
                 public void responseCallback(Boolean isCompleted, String error) {
-                    Log.d(TAG, "Init Completed");
+                    Log.d("BaseApplication_TAG", "DevNagri Sdk initialized");
                 }
             });
-        } catch (Exception e) {
+         } catch (Exception e) {
             e.printStackTrace();
         }
     }
