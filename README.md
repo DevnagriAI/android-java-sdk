@@ -175,18 +175,25 @@ You can use these methods anywhere in your project and these will provide transl
 
   // This method is used to convert the entire JSON object to requested language 
   // ignoreKeys -> Send a list of strings that you want to ignore during the conversion process 
+  	JSONObject json = new JSONObject();
+  	json.put("Name", "DevNagri SDK");
+  	json.put("Language", "Java");
+  	devNagriTranslationSdk.getTranslationOfJSON(jsonObjectValue, 
+        	    ignoreKeys, 
+            	new GenericCallback<JSONObject>() {
+                	  @Override
+                  	public void onCallback(JSONObject translatedJsonObject) {
+                      	//Here you find translated JSON Object
+                  	}
+            	});
+		
+# For Modular Approach
+	- Please add DevNagriSDK dependency in each module level gradle file.
+	- If you have multiple modules in your application, then in each module's base activity override the below method.
 
-  JSONObject json = new JSONObject();
-  json.put("Name", "DevNagri SDK");
-  json.put("Language", "Java");
-  devNagriTranslationSdk.getTranslationOfJSON(jsonObjectValue, 
-            ignoreKeys, 
-            new GenericCallback<JSONObject>() {
-                  @Override
-                  public void onCallback(JSONObject translatedJsonObject) {
-                      //Here you find translated JSON Object
-                  }
-            });
+	public AppCompatDelegate getDelegate() {
+		return MainApplication.devNagriTranslationSdk.fetchAppDelegate(this, super.getDelegate());
+	}
 
 
  
