@@ -24,7 +24,7 @@ Add the below dependency in your app build.gradle file:
 	
 	    ...
 	    
-	    implementation ('com.github.DevnagriAI:android-java-sdk:1.0.7@aar') { transitive(true) }
+	    implementation ('com.github.DevnagriAI:android-java-sdk:1.0.8@aar') { transitive(true) }
 	    
 	}
         
@@ -49,12 +49,13 @@ Initialise the SDK in your application class and add the API_KEY from DevNagri.
           
         Field[] strings = R.string.class.getFields();
         Field[] arrays = R.array.class.getFields();
+	Field[] styles = R.style.class.getFields();
         Field[] plurals = null;
 	  
 	      // passing arrays and plurals in init method is optional here, pass them only if defined in strings.xml file
         try {
                devNagriTranslationSdk = new DevNagriTranslationSdk();
-               devNagriTranslationSdk.init(getApplicationContext(), API_KEY, sync_Time, strings, arrays, plurals, new ResponseListener() {
+               devNagriTranslationSdk.init(getApplicationContext(), API_KEY, sync_Time, strings, arrays, plurals,styles, new ResponseListener() {
                  @Override
                  public void responseCallback(Boolean isCompleted, String error) {
                      Log.d(TAG, "DevNagri Sdk initialized");
