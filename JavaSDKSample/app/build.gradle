@@ -32,7 +32,6 @@ android {
 
     buildFeatures {
         viewBinding true
-        dataBinding true
     }
 }
 
@@ -57,5 +56,5 @@ dependencies {
     implementation "androidx.fragment:fragment:$fragment_version"
     implementation "androidx.lifecycle:lifecycle-common:2.4.0"
 
-    implementation ('com.github.DevnagriAI:android-java-sdk:1.0.7@aar') { transitive(true) }
+    implementation ('com.github.DevnagriAI:android-java-sdk:1.1.0@aar') { transitive(true) }
 }

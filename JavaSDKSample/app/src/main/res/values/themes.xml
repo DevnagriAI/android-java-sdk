@@ -21,4 +21,29 @@
     <style name="Theme.TranslationSDK.AppBarOverlay"
         parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.TranslationSDK.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ButtonStyle">
+        <item name="android:text">@string/next</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="ChangelanguageButtonStyle">
+        <item name="android:text">@string/change_language</item>
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="AreYouFineButtonStyle">
+        <item name="android:text">@string/h_yes</item>
+        <item name="android:textColor">#000</item>
+    </style>
+
+    <style name="toogleStyle">
+        <item name="android:text">@string/h_yes</item>
+        <item name="android:textColor">#000</item>
+    </style>
+
+    <style name="TvStyle">
+        <item name="android:text">@string/hello_first_fragment</item>
+        <item name="android:textColor">#000</item>
+    </style>
 </resources>

@@ -14,13 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 
 import com.devnagritranslationsdk.interfaces.ResponseListener;
 import com.devnagritranslationsdk.network.ResultInterface;
 import com.translationsdk.databinding.FragmentFirstBinding;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
@@ -44,7 +44,7 @@ public class FirstFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_first, container, false);
+        binding = FragmentFirstBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
